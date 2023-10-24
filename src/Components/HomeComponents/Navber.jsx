@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 const Navber = () => {
   const navber = (
@@ -111,9 +111,11 @@ const Navber = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <button className="border-2 border-[#FF3811]  px-6 py-1 text-[#FF3811] text-xl font-semibold hover:bg-[#FF3811] hover:text-white rounded-md ">
-            Appointment
-          </button>
+          <Link to="/signUp">
+            <button className="border-2 border-[#FF3811]  px-6 py-1 text-[#FF3811] text-xl font-semibold hover:bg-[#FF3811] hover:text-white rounded-md ">
+              Appointment
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const AboutUs = () => {
           </p>
           <p className="py-6">
             the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don't look even slightly
+            humour, or randomised words which dont look even slightly
             believable.
           </p>
           <button className="border-2 bg-[#FF3811]  px-6 py-1 text-white text-xl font-semibold hover:border-2 border-[#FF3811] hover:bg-white hover:text-black rounded-md ">
