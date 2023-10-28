@@ -1,23 +1,39 @@
 import { Link } from "react-router-dom";
 import Navber from "../Components/HomeComponents/Navber";
-import login from "../assets/images/login/login.svg";
+import loogin from "../assets/images/login/login.svg";
 import { BsFacebook } from "react-icons/Bs";
 import { BsLinkedin } from "react-icons/Bs";
 import { FcGoogle } from "react-icons/Fc";
 import { BsGithub } from "react-icons/Bs";
+import { useContext } from "react";
+import { AuthContext } from "../ContextProvider/AuthProvider";
 
 const SignIn = () => {
+  const { login } = useContext(AuthContext);
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    login(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  };
   return (
     <div>
       <Navber></Navber>
       <div className="flex justify-between items-center  ">
         <div className="hidden lg:block">
-          <img src={login} alt="" />
+          <img src={loogin} alt="" />
         </div>
         <div className="hero min-h-screen">
           <div className="hero-content flex-col ">
             <div className="card flex-shrink-0  max-w-sm shadow-2xl bg-base-100">
-              <form className="card-body">
+              <form onSubmit={handleSignIn} className="card-body">
                 <div className="text-center ">
                   <h1 className="text-3xl font-bold">Sign in </h1>
                 </div>

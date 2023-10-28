@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import Navber from "../Components/HomeComponents/Navber";
+import { useContext } from "react";
+import { AuthContext } from "../ContextProvider/AuthProvider";
 
 const SignUp = () => {
+  const { register } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    register(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  };
   return (
     <div>
       <Navber></Navber>
@@ -13,7 +29,7 @@ const SignUp = () => {
         <div className="hero">
           <div className="hero-content  flex-col ">
             <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
-              <form className="card-body">
+              <form onSubmit={handleSignUp} className="card-body">
                 <div className="text-center ">
                   <h1 className="text-3xl font-bold">Sign Up </h1>
                 </div>

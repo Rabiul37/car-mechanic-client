@@ -1,6 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../ContextProvider/AuthProvider";
 const Navber = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then()
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  };
   const navber = (
     <>
       <li className="hover:underline  hover:decoration-[#FF3811] decoration-4 underline-offset-1">
@@ -73,6 +83,21 @@ const Navber = () => {
           Content
         </NavLink>
       </li>
+
+      <li className="hover:underline  hover:decoration-[#FF3811] decoration-4 underline-offset-1">
+        <NavLink
+          to="/Mybooking"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? "underline decoration-[#FF3811] decoration-4 underline-offset-1 text-[#FF3811] "
+              : isPending
+              ? "pending"
+              : ""
+          }
+        >
+          My booking
+        </NavLink>
+      </li>
     </>
   );
   return (
@@ -111,9 +136,13 @@ const Navber = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/signUp">
-            <button className="border-2 border-[#FF3811]  px-6 py-1 text-[#FF3811] text-xl font-semibold hover:bg-[#FF3811] hover:text-white rounded-md ">
-              Appointment
+          <h1>{user?.email}</h1>
+          <Link to="/signin">
+            <button
+              onClick={handleLogout}
+              className="border-2 border-[#FF3811]  px-6 py-1 text-[#FF3811] text-xl font-semibold hover:bg-[#FF3811] hover:text-white rounded-md "
+            >
+              {user ? "Log out" : "signin"}
             </button>
           </Link>
         </div>
